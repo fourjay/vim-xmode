@@ -83,4 +83,4 @@ map <Plug>CTRL_X :call <SID>xcommand()<cr>
 imap <C-X><C-X> <C-O><Plug>CTRL_X
 
 
-let cpo = savecpo
+let cpo = s:savecpo
