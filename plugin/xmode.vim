@@ -1,10 +1,10 @@
 if &cp || exists("g:loaded_vim_xmode")
-   finish
-  endif
-  let g:loaded_vim_xmode = 1
-  let s:savecpo            = &cpo
-  set cpo&vim
-  "
+    finish
+endif
+let g:loaded_vim_xmode = 1
+let s:savecpo            = &cpo
+set cpo&vim
+
 " Whole lines                                | i_CTRL-X_CTRL-L |
 " keywords in the current file               | i_CTRL-X_CTRL-N |
 " keywords in 'dictionary'                   | i_CTRL-X_CTRL-K |
@@ -25,7 +25,7 @@ let s:xdictionary =
             \   [ "p" , "prev"         , "\<C-P>" ] ,
             \   [ "l" , "line"         , "\<C-L>" ] ,
             \   [ "k" , "dictionary"   , "\<C-K>" ] ,
-            \   [ "t" , "thesaurus"    , "\<C-T>"]  ,
+            \   [ "t" , "thesaurus"    , "\<C-T>" ]  ,
             \   [ "i" , "include"      , "\<C-I>" ] ,
             \   [ "]" , "tags"         , "\<C-]>" ] ,
             \   [ "d" , "definitions"  , "\<C-D>" ] ,
@@ -33,7 +33,7 @@ let s:xdictionary =
             \   [ "v" , "commandline"  , "\<C-V>" ] ,
             \   [ "u" , "userdefined"  , "\<C-U>" ] ,
             \   [ "o" , "omnicomplete" , "\<C-O>" ] ,
-            \   [ "s" , "spelling"     , "\<C-S>" ] ,
+            \   [ "s" , "spelling"     , "s"      ] ,
             \ ]
 
 function! Xfunccomplete(...)
@@ -62,7 +62,6 @@ function! s:xcommand(...)
                 \   "",
                 \   "custom,Xfunccomplete"
                 \ )
-
     echohl None
     execute "set cmdheight=" . old_cmdheight
     let x_char = <SID>get_ctrl(input)
@@ -82,5 +81,17 @@ endfunction
 map <Plug>CTRL_X :call <SID>xcommand()<cr>
 imap <C-X><C-X> <C-O><Plug>CTRL_X
 
+inoremap <C-X>l <C-X><C-L>
+inoremap <C-X>n <C-X><C-N>
+inoremap <C-X>k <C-X><C-K>
+inoremap <C-X>t <C-X><C-T>
+inoremap <C-X>i <C-X><C-I>
+inoremap <C-X>] <C-X><C-]>
+inoremap <C-X>f <C-X><C-F>
+inoremap <C-X>d <C-X><C-D>
+inoremap <C-X>v <C-X><C-V>
+inoremap <C-X>u <C-X><C-U>
+inoremap <C-X>p <C-X><C-P>
+inoremap <C-X>o <C-X><C-O>
 
 let cpo = s:savecpo
