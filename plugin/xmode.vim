@@ -33,7 +33,8 @@ let s:xdictionary =
             \   [ "v" , "commandline"  , "\<C-V>" ] ,
             \   [ "u" , "userdefined"  , "\<C-U>" ] ,
             \   [ "o" , "omnicomplete" , "\<C-O>" ] ,
-            \   [ "s" , "spelling"     , "s"      ] ,
+            \   [ "s" , "spelling   "  , "s"      ] ,
+            \   [ "e" , "endofline  "  , "e"      ] ,
             \ ]
 
 function! Xfunccomplete(...)
@@ -59,6 +60,7 @@ function! s:xcommand(...)
             let k = 1
         endif
     endfor
+    echom "c_height " . c_height
     execute "set cmdheight=" . c_height
     let input = input(
                 \   a:prompt . "\n",
@@ -100,4 +102,5 @@ inoremap <C-X>u <C-X><C-U>
 inoremap <C-X>p <C-X><C-P>
 inoremap <C-X>o <C-X><C-O>
 
+inoremap <C-X>e <esc>$a
 let cpo = s:savecpo
