@@ -21,15 +21,15 @@ set cpo&vim
 
 let s:xdictionary =
             \ [
-            \   [ "n" , "next"         , "\<C-N>" ] ,
-            \   [ "p" , "prev"         , "\<C-P>" ] ,
-            \   [ "l" , "line"         , "\<C-L>" ] ,
-            \   [ "k" , "dictionary"   , "\<C-K>" ] ,
-            \   [ "t" , "thesaurus"    , "\<C-T>" ]  ,
-            \   [ "i" , "include"      , "\<C-I>" ] ,
-            \   [ "]" , "tags"         , "\<C-]>" ] ,
+            \   [ "n" , "next       "  , "\<C-N>" ] ,
+            \   [ "p" , "prev       "  , "\<C-P>" ] ,
+            \   [ "l" , "line       "  , "\<C-L>" ] ,
+            \   [ "k" , "dictionary "  , "\<C-K>" ] ,
+            \   [ "t" , "thesaurus  "  , "\<C-T>" ]  ,
+            \   [ "i" , "include    "  , "\<C-I>" ] ,
+            \   [ "]" , "tags       "  , "\<C-]>" ] ,
             \   [ "d" , "definitions"  , "\<C-D>" ] ,
-            \   [ "f" , "filename"     , "\<C-f>" ] ,
+            \   [ "f" , "filename   "  , "\<C-f>" ] ,
             \   [ "v" , "commandline"  , "\<C-V>" ] ,
             \   [ "u" , "userdefined"  , "\<C-U>" ] ,
             \   [ "o" , "omnicomplete" , "\<C-O>" ] ,
@@ -46,17 +46,20 @@ endfunction
 
 function! s:xcommand(...)
     let old_cmdheight = &cmdheight
-    set cmdheight=3
     echohl Statement
     let k = 0
     let a:prompt = ""
+    let c_height = 1
     for i in s:xdictionary
         let k += 1
         let a:prompt .= "[" . i[0] . "]" . i[1] . " "
         if k == 5
             let a:prompt .= "\n"
+            let c_height += 1
+            let k = 1
         endif
     endfor
+    execute "set cmdheight=" . c_height
     let input = input(
                 \   a:prompt . "\n",
                 \   "",
