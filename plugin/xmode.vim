@@ -53,7 +53,7 @@ function! s:xcommand(...)
     for i in s:xdictionary
         let k += 1
         let a:prompt .= "[" . i[0] . "]" . i[1] . " "
-        if k == 5
+        if k == 4
             let a:prompt .= "\n"
             let c_height += 1
             let k = 1
