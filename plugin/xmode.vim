@@ -65,6 +65,9 @@ function! s:xcommand(...)
     echohl None
     execute "set cmdheight=" . old_cmdheight
     let x_char = <SID>get_ctrl(input)
+    if x_char == ''
+        return
+    endif
     call feedkeys("\<C-X>" . x_char )
 endfunction
 
